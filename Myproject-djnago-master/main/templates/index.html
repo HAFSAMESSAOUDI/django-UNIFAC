@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimization Input</title>
+    <style>
+        /* CSS pour le titre h1 */
+        h1 {
+            font-family: "Work Sans", sans-serif;
+            font-size: 2em;
+            font-weight: 900;
+            color: #26477c;
+            text-transform: uppercase;
+            text-align: center;
+            position: relative;
+            margin-bottom: 30px; /* Marge inférieure */
+        }
+
+        h1::before {
+            content: ""; /* Pseudo-élément pour le surlignage */
+            position: absolute;
+            left: 0;
+            bottom: -3px; /* Distance du surlignage par rapport au texte */
+            width: 100%; /* Largeur du surlignage */
+            height: 3px; /* Hauteur du surlignage */
+            background-color: #000000; /* Couleur du surlignage */
+            transition: width 0.3s; /* Transition pour l'effet hover */
+        }
+
+        h1:hover::before {
+            width: 110%; /* Ajustement de la largeur pour l'effet hover */
+        }
+
+        /* CSS pour les boutons */
+        .button {
+            all: unset;
+            width: 100px;
+            height: 30px;
+            font-size: 16px;
+            background: transparent;
+            border: none;
+            position: relative;
+            color: #f0f0f0;
+            cursor: pointer;
+            z-index: 1;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            margin-left: 60%;
+        }
+
+        .button::after,
+        .button::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: -99999;
+            transition: all .4s;
+        }
+
+        .button::before {
+            transform: translate(0%, 0%);
+            width: 100%;
+            height: 100%;
+            background: #28282d;
+            border-radius: 10px;
+        }
+
+        .button::after {
+            transform: translate(10px, 10px);
+            width: 35px;
+            height: 35px;
+            background: #ffffff15;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 50px;
+        }
+
+        .button:hover::before {
+            transform: translate(5%, 20%);
+            width: 110%;
+            height: 110%;
+        }
+
+        .button:hover::after {
+            border-radius: 10px;
+            transform: translate(0, 0);
+            width: 100%;
+            height: 100%;
+        }
+
+        .button:active::after {
+            transition: 0s;
+            transform: translate(0, 5%);
+        }
+
+        /* CSS pour les inputs */
+        input[type="text"] {
+            width: 200px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #000000; /* Couleur de la bordure */
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold; /* Texte en gras */
+            color: #000000; /* Couleur du texte */
+            box-sizing: border-box;
+            text-align: center;
+        }
+        
+        /* CSS pour les labels */
+     /* CSS pour les labels */
+label {
+    font-weight: bold; /* Texte en gras */
+    font-family: "Arial Black", sans-serif; /* Utilisation de la police Arial Black */
+    color: #000000; /* Couleur du texte */
+    display: inline-block;
+    width: 150px; /* Ajustez la largeur en fonction de vos besoins */
+    text-align: right;
+    margin-right: 10px; /* Marge à droite pour espacement */
+}
+
+
+        /* Styles pour centrer le contenu */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Utilisation de toute la hauteur de la fenêtre */
+            margin: 0; /* Supprimer les marges par défaut */
+            padding: 0; /* Supprimer les rembourrages par défaut */
+            background-color: #f0f0f0; /* Ajout d'une couleur de fond */
+            background-image: url('https://www.snexplores.org/wp-content/uploads/2021/01/120320_eg_polywater_feat-1030x580.jpg');
+            background-size: cover; /* Pour couvrir toute la surface de l'écran */
+            background-position: center; /* Pour centrer l'image */
+        }
+    </style>
+</head>
+<body>
+    <h1>Optimization Input</h1>
+    <form action="/results/" method="post">
+        {% csrf_token %}
+        <label for="Xa">Xa:</label>
+        <input type="text" id="Xa" name="Xa"><br>
+
+        <label for="D_AB_exp">D_AB_exp:</label>
+        <input type="text" id="D_AB_exp" name="D_AB_exp"><br>
+
+        <label for="T">T:</label>
+        <input type="text" id="T" name="T"><br>
+
+        <label for="lambda_a">Lambda_a:</label>
+        <input type="text" id="lambda_a" name="lambda_a"><br>
+
+        <label for="lambda_b">Lambda_b:</label>
+        <input type="text" id="lambda_b" name="lambda_b"><br>
+
+        <label for="q_a">q_a:</label>
+        <input type="text" id="q_a" name="q_a"><br>
+
+        <label for="q_b">q_b:</label>
+        <input type="text" id="q_b" name="q_b"><br>
+
+        <label for="D_AB0">D_AB0:</label>
+        <input type="text" id="D_AB0" name="D_AB0"><br>
+
+        <label for="D_BA0">D_BA0:</label>
+        <input type="text" id="D_BA0" name="D_BA0"><br>
+
+        <button class="button" role="button">Submit</button>
+    </form>
+</body>
+</html>

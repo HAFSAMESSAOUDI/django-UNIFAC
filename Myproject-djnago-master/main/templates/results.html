@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimization Results</title>
+    <!-- Include Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Modifié pour centrer verticalement */
+    flex-direction: column;
+    height: 100vh;
+    background: #087ab7 url('https://media.istockphoto.com/id/1387658310/vector/hexagons-pattern-on-gray-background-genetic-research-molecular-structure-chemical.jpg?s=612x612&w=0&k=20&c=2K3xTkPkU7zjvGShMVJBCg6YizT6ax7P2m6gOnf6tlc=') no-repeat center center; /* Arrière-plan avec couleur et image */
+    background-size: cover; /* Couvrir tout l'arrière-plan avec l'image */
+}
+
+
+@keyframes bounce {
+    0% {
+        transform: translateY(-10px);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    color: #000000;
+    margin-left: 1%;
+    margin-top: 30%;
+    padding: 20px; /* Ajout de remplissage pour l'espace intérieur du cadre */
+    background-color: #f0f0f0; /* Couleur de fond */
+    border: 2px solid #292c83; /* Bordure */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre */
+    animation: bounce 1s ease; /* Ajout de l'animation */
+}
+
+
+
+h2 {
+    color: #e4471c;
+    margin-left: 5%;
+    margin-top: 12%;
+    text-align: center;
+    border-top-color: inherit;
+}
+p {
+    margin-bottom: 10px;
+}
+
+#plot {
+    width: 80%;
+    margin: 20px auto; /* Marge en haut et en bas du graphique */
+    border-radius: 10px; 
+}
+
+
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Optimization Results</h1>
+        <p><strong> a_AB_opt:</strong> {{ a_AB_opt }}</p>
+        <p><strong>a_BA_opt:</strong> {{ a_BA_opt }}</p>
+        <p><strong>D_AB_opt:</strong> {{ D_AB_opt }}</p>
+        <p><strong>Error:</strong> {{ error }}</p>
+
+        <!-- Ajoutez le temps d'itération ici -->
+        <p><strong>Duration of iteration:</strong> {{ iteration_duration }} seconds</p>
+
+        <h2>Plot</h2>
+    </div>
+    <div id="plot"></div>
+
+    <script>
+        // Render the plot using Plotly
+        var plotDiv = document.getElementById('plot');
+        var plotData = {{ plot_json | safe }};
+        Plotly.newPlot(plotDiv, plotData.data, plotData.layout);
+    </script>
+</body>
+</html>
