@@ -146,8 +146,14 @@ label {
 </head>
 <body>
     <h1>Optimization Input</h1>
-    <form action="/results/" method="post">
+    <form action="/results/" method="post" onsubmit="return validateForm()">
         {% csrf_token %}
+        <label for="solute_name">Solute :</label>
+        <input type="text" id="solute_name" name="solute_name"><br>
+        
+        <label for="solvent_name">Solvent:</label>
+        <input type="text" id="solvent_name" name="solvent_name"><br>
+
         <label for="Xa">Xa:</label>
         <input type="text" id="Xa" name="Xa"><br>
 
@@ -174,8 +180,19 @@ label {
 
         <label for="D_BA0">D_BA0:</label>
         <input type="text" id="D_BA0" name="D_BA0"><br>
-
+       
         <button class="button" role="button">Submit</button>
     </form>
+
+    <script>
+        function validateForm() {
+            var xaInput = document.getElementById("Xa").value;
+            if (xaInput > 1) {
+                alert("La valeur de Xa doit être comprise entre 0 et 1.");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 </html>
